@@ -20,4 +20,7 @@ This file systems supports the following features:
   Outcome: /dir_1 will be replaced by /dir_new  
  
 # To exit:
-  Command: exit  
+  Command: exit
+  
+# Testing:
+  ./run.sh
