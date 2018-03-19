@@ -12,7 +12,7 @@ This file systems supports the following features:
 # Adding a directory:
   Command: mkdir <absolute_path>  
   Examples: mkdir /dir_1  
-  Note: Absolute path has to begin with /. Currently it does not support nested directory creation.  
+  Note: Currently it does not support nested directory creation.
   
 # Rename a directory:
   Command: rename <absolute_path> <new_directory_name>  

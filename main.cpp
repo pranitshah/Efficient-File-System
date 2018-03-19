@@ -37,7 +37,7 @@ void listing(string path){
         for (i = 1; i < tokens.size(); i++) {
             key = to_string(current_inode) + "-" + tokens[i];
             if (store.find(key) == store.end()) {
-                cout << "Invalid Path" << endl;
+                cout << "\tInvalid Path" << endl;
                 return;
             }
             current_inode = store[key].inode_number;
@@ -51,7 +51,7 @@ void listing(string path){
     map<string, struct node>::iterator it = store.lower_bound(key);
     while(it!=store.end()){
         if( ((it->first).length() >= length)  && (((it->first).substr(0,length)).compare(key) == 0)){
-            cout<<(it->first).substr(length)<<endl;
+            cout<<"\t"<<(it->first).substr(length)<<endl;
         }
         ++it;
     }
@@ -65,7 +65,7 @@ void add_directory(string path){
     for(i=1; i<tokens.size()-1;i++){
         key = to_string(current_inode) + "-" + tokens[i];
         if(store.find(key) == store.end()){
-            cout<<"Invalid Path"<<endl;
+            cout<<"\tInvalid Path"<<endl;
             return;
         }
         current_inode = store[key].inode_number;
@@ -74,7 +74,7 @@ void add_directory(string path){
     if(tokens.size() > 1) {
         key = to_string(current_inode) + "-" + tokens[tokens.size() - 1];
         if (store.find(key) !=store.end()){
-            cout<<"Directory already exists"<<endl;
+            cout<<"\tDirectory already exists"<<endl;
             return;
         }
         struct node meta_node;
@@ -82,6 +82,7 @@ void add_directory(string path){
         meta_node.information.some_information = "I am a directory";
         store[key] = meta_node;
         next_available_inode++;
+        cout<<"\tDirectory created"<<endl;
     }
 
 }
@@ -104,36 +105,44 @@ void rename_directory(string input){
         key = to_string(current_inode) + "-" + tokens[i];
         modified_key = to_string(current_inode) + "-";
         if (store.find(key) == store.end()) {
-            cout << "Invalid Path" << endl;
+            cout << "\tInvalid Path" << endl;
         }
         current_inode = store[key].inode_number;
     }
     if (store.find(modified_key + new_directory_name) !=store.end()){
-        cout<<"New directory name already exists"<<endl;
+        cout<<"\tNew directory name already exists"<<endl;
         return;
     }
     store[modified_key + new_directory_name] = store[key];
     store.erase(key);
+    cout<<"\tDirectory has been renamed"<<endl;
 }
 
 int main() {
-    cout<<"Listing: ls aboslute_path"<<endl;
+    cout<<"\n\nListing: ls aboslute_path"<<endl;
     cout<<"Add: mkdir absolute path"<<endl;
     cout<<"Rename: rename absolute_path new_directory_name"<<endl;
-    cout<<"Exit: exit"<<endl;
+    cout<<"Exit: exit\n\n"<<endl;
     string input;
     while(true){
         getline(cin,input);
 
         if (input == "exit")
             return 0;
-        if (input.length() >=5  && input.substr(0,5).compare("mkdir") == 0){
+        else if(input == "ls"){
+            cout<<"Command - "<<input<<" : "<<endl;
+            cout<<"\tPlease enter an absolute path beginning with /"<<endl;
+        }
+        else if (input.length() >=5  && input.substr(0,5).compare("mkdir") == 0){
+            cout<<"Command - "<<input<<" : "<<endl;
             add_directory(input.substr(6));
         }
         else if (input.length() >=2  && input.substr(0,2).compare("ls")== 0){
+            cout<<"Command - "<<input<<" : "<<endl;
             listing(input.substr(3));
         }
         else if (input.length() >=6  && input.substr(0,6).compare("rename")== 0){
+            cout<<"Command - "<<input<<" : "<<endl;
             rename_directory(input);
         }
     }

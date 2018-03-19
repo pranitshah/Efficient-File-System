@@ -1,0 +1,10 @@
+mkdir /a
+mkdir /b
+mkdir /a/c
+mkdir /b/d
+ls /
+ls /b
+rename /a d
+rename /b d
+ls /
+exit

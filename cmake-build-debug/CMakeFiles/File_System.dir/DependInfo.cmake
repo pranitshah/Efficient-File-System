@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/pranit/Desktop/Spring_2018/File System/main.cpp" "/Users/pranit/Desktop/Spring_2018/File System/cmake-build-debug/CMakeFiles/File_System.dir/main.cpp.o"
+  "/Users/pranit/Desktop/Spring_2018/Efficient-File-System/main.cpp" "/Users/pranit/Desktop/Spring_2018/Efficient-File-System/cmake-build-debug/CMakeFiles/File_System.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
